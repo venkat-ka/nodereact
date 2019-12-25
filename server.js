@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require(“path”);
-app.use(express.static(path.join(__dirname, 'client/build')))
+app.use(express.static(path.join(__dirname, 'build/client')))
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
