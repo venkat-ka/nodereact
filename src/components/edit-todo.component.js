@@ -18,7 +18,7 @@ export default class EditTodo extends Component {
     }
 
     componentDidMount() {
-        axios.put('http://localhost:4000/todos/'+this.props.match.params.id)
+        axios.put('http://18.188.88.61/api/'+this.props.match.params.id)
             .then(response => {
                 this.setState({
                     todo_description: response.data.todo_description,
@@ -64,7 +64,7 @@ export default class EditTodo extends Component {
             todo_completed: this.state.todo_completed
         };
         console.log(obj);
-        axios.put('http://localhost:4000/todos/update/'+this.props.match.params.id, obj)
+        axios.put('http://18.188.88.61/api/update/'+this.props.match.params.id, obj)
             .then(res => console.log(res.data));
         
         this.props.history.push('/');

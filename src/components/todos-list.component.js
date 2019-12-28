@@ -12,7 +12,7 @@ const Todo = (props) => {
             <Link to={"/edit/"+props.todo._id}>Edit</Link>
             <br />
            <button onClick={ () =>
-                    axios.delete('http://localhost:4000/todos/'+props.todo._id)
+                    axios.delete('http://18.188.88.61/api/'+props.todo._id)
                         .then(() => props.deleteItem(props.todo._id))                    
                         .catch(err => console.log(err))
                 }
@@ -35,7 +35,7 @@ class TodosList extends Component {
     }
     
     componentDidMount = () => {
-        axios.get('http://localhost:4000/todos/')
+        axios.get('http://18.188.88.61/api/')
             .then(response => {
                 this.setState({ todos: response.data });
             })
