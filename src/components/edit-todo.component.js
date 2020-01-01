@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Notification from './Notification';
 export default class EditTodo extends Component {
     constructor(props) {
         super(props);
@@ -10,6 +11,7 @@ export default class EditTodo extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
+            error_message:'',
             todo_description: '',
             todo_responsible: '',
             todo_priority: '',
@@ -18,7 +20,7 @@ export default class EditTodo extends Component {
     }
 
     componentDidMount() {
-        axios.put('http://18.188.88.61/api/'+this.props.match.params.id)
+        axios.get('http://18.188.88.61/api/'+this.props.match.params.id)
             .then(response => {
                 this.setState({
                     todo_description: response.data.todo_description,
@@ -65,14 +67,30 @@ export default class EditTodo extends Component {
         };
         console.log(obj);
         axios.put('http://18.188.88.61/api/update/'+this.props.match.params.id, obj)
-            .then(res => console.log(res.data));
+            .then(res => {
+
+                console.log(res.data);
+                this.props.history.push('/');  
+            }).catch(err=>{
+               
+              return this.setState({
+                   error_message : err.response.data.message
+               })
+                
+            });
+            
         
-        this.props.history.push('/');
     }
     render() {
+        let message;
+        if(this.state.error_message){
+           message =<Notification message={this.state.error_message} type={'danger'} />
+        }
+        console.log(JSON.stringify(this.state.error_message));
         return (
             <div>
                 <h3 align="center">Update Todo</h3>
+               {message}
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 
                         <label>Description: </label>

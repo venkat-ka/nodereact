@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Notification from './Notification';
 
 export default class CreateTodo extends Component {
     constructor(props){
         super(props);
         this.state={
+            message: '',
             todo_description: '',
             todo_responsible: '',
             todo_priority: '',
@@ -50,22 +52,31 @@ export default class CreateTodo extends Component {
             todo_completed: this.state.todo_completed
         };
 
-        axios.post('http://18.188.88.61/api/add', newTodo)
-            .then(res => console.log(res.data));
-
-            
-        this.setState({
-            todo_description: '',
-            todo_responsible: '',
-            todo_priority: '',
-            todo_completed: false
-        })
+      axios.post('http://18.188.88.61/api/add', newTodo)
+        .then(res => {
+                this.setState({
+                    message: res.data.todo,
+                    todo_description: '',
+                    todo_responsible: '',
+                    todo_priority: '',
+                    todo_completed: false
+                })
+            })   
+        
     }
 
     render() {
+        let msg;
+        
+            if(this.state.message)
+            {
+                 msg = <Notification message={this.state.message} type={'success'}/> 
+            }
         return (
+
             <div style={{marginTop: 10}}>
                 <h3>Create New Todo</h3>
+                {msg}
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 
                         <label>Description: </label>
