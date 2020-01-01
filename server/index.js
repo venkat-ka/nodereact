@@ -25,7 +25,7 @@ connection.once('open', function() {
 let totnum = 1;
 
 // check numbers nd row
-let findpara = (skipid, limitid, resactpg, totalobj) =>{ 
+let findpara = (skipid, limitid) =>{ 
     
    
     let returnres = Todo.find().skip(parseInt(skipid)).limit(parseInt(limitid));    
@@ -154,7 +154,7 @@ todoRoutes.route('/:id/:skip/:limit/:actpg').delete(function(req, res){
                 let limittotnum;
                 let totalrow;
                
-                let getvalu =  findpara(skipid, limitid, resactpg, totalobj).exec(function(err, todos){
+                let getvalu =  findpara(skipid, limitid).exec(function(err, todos){
                    
                     if(todos.length == 0)
                     {
