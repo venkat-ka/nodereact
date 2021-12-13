@@ -67,3 +67,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 npm install yarn  
+
+React Learning Self Enhacement
+https://blog.bitsrc.io/how-to-implement-idle-timeout-in-react-830d21c32942
+
