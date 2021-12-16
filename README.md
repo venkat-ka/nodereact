@@ -70,4 +70,5 @@ npm install yarn
 
 React Learning Self Enhacement
 https://blog.bitsrc.io/how-to-implement-idle-timeout-in-react-830d21c32942
-
+useReducer learning
+https://dmitripavlutin.com/react-usereducer/
